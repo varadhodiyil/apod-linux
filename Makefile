@@ -12,3 +12,9 @@ lint:
 type-check:
 	@echo " ============== Running type checker ============== "
 	uv run  ty check .
+
+run:
+	@echo " ============== Running the application ============== "
+	cd src && uv run  python apod_fetcher.py
+
+commit: lint type-check

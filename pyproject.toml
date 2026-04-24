@@ -78,3 +78,6 @@ build-backend = "uv_build"
 [tool.uv.build-backend]
 module-name = "src"
 module-root = ""
+
+[tool.ty.environment]
+root = ["./src"]

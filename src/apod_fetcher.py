@@ -3,6 +3,7 @@
 import logging
 import urllib.request
 from html.parser import HTMLParser
+from pathlib import Path
 from urllib.parse import urljoin
 
 from wallpaper import main as set_wallpaper
@@ -70,7 +71,7 @@ def fetch_apod_image_url(page_url: str = APOD_URL) -> str:
     return image_url
 
 
-def download_image(image_url: str, dest_path: str) -> str:
+def download_image(image_url: str, dest_path: Path) -> Path:
     """Download the image to dest_path and return the path."""
     logger.info("Downloading image: %s -> %s", image_url, dest_path)
     _is_valid_url(image_url)
@@ -82,7 +83,8 @@ if __name__ == "__main__":
     try:
         image_url = fetch_apod_image_url()
         logger.info("APOD image URL: %s", image_url)
-        downloaded_path = download_image(image_url, "apod.jpg")
+        Path("assests").mkdir(exist_ok=True)
+        downloaded_path = download_image(image_url, Path("assests") / "apod.jpg")
         logger.info("Image downloaded to: %s", downloaded_path)
         set_wallpaper(downloaded_path, desktop="auto")
     except Exception:

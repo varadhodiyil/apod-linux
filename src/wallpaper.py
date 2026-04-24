@@ -28,9 +28,9 @@ def detect_desktop_environment() -> str:
     return "unknown"
 
 
-def validate_image(image_path: str) -> Path:
+def validate_image(image_path: Path) -> Path:
     """Validate that the image file exists and is readable."""
-    path = Path(image_path).expanduser().absolute()
+    path = image_path.expanduser().absolute()
 
     if not path.exists():
         msg = f"Image file not found: {image_path}"
@@ -170,7 +170,7 @@ def set_wallpaper_cinnamon(image_path: Path) -> bool:
 
 
 def main(
-    image_file: str = "./apod.jpg",
+    image_file: Path = Path("./apod.jpg"),
     desktop: Literal["gnome", "kde", "xfce", "cinnamon", "auto"] = "auto",
 ) -> int:
     """Parse arguments and set wallpaper."""
