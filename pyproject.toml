@@ -70,3 +70,11 @@ line-ending = "auto"
 docstring-code-format = false
 
 docstring-code-line-length = "dynamic"
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "src"
+module-root = ""
